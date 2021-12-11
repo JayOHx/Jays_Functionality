@@ -15,8 +15,8 @@ This is a simple script that I am currently working on for Sunrise city and have
 ![point finger](https://user-images.githubusercontent.com/83920038/145663772-b05525fe-cc02-4efd-bde8-4784396afbb8.png)
 ![handsup2](https://user-images.githubusercontent.com/83920038/145663774-ed7be7c1-db09-4d4c-b8ba-aa4cd453f9d6.png)
 ![crouching](https://user-images.githubusercontent.com/83920038/145685834-10aaad95-16c4-4a0e-91f4-1a1d9ccbff3f.png)
-!![Ping failed](https://user-images.githubusercontent.com/83920038/145685864-53049312-2c8c-469f-a941-2aad1c2b292f.png)
-[ping](https://user-images.githubusercontent.com/83920038/145662886-982a4551-1a9b-47de-ad8a-37a3f3095f4e.png)
+![Ping failed](https://user-images.githubusercontent.com/83920038/145685864-53049312-2c8c-469f-a941-2aad1c2b292f.png)
+![ping](https://user-images.githubusercontent.com/83920038/145662886-982a4551-1a9b-47de-ad8a-37a3f3095f4e.png)
 
 # INSTALLATION:
   1. Download the ZIP file
