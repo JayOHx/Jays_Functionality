@@ -22,9 +22,9 @@ CONFIG:
 
 CONTACT:
 
-  https://discord.gg/wwD4Z9FhYX
+  https://discord.gg/rN4nVHArY9
   
-  Please use channel '💰│fivem' and ping me if its urgent.
+  Please use channel '✋│functionality' in the support section and ping me if its urgent.
  
  
 I encourage the reproduction and re-working of this resource, all i ask is for some credit if being modified or re-uploaded.
