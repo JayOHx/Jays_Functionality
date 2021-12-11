@@ -8,11 +8,11 @@ Current v1.0a features: (VERY LIMITED)
   2. Ability to disable default GTA V vehicle radio.
   3. Built in client and consol 'debug' this only displays your config settings.
 
-USAGE:
+INSTALLATION:
 
   1. Download the ZIP file
-  2. remove '-main' from the file name
-  3. upload to your server resources
+  2. Remove '-main' from the file name
+  3. Upload to your server resources
   4. Done.
 
 CONFIG:
