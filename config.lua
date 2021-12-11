@@ -13,3 +13,6 @@ Config.AllowGarbage =           false
 Config.AllowPolice =            false
 Config.AllowBoatSpawns =        false
 
+-- Disable/Enable the ping command --
+Config.AllowPing =              false
+
