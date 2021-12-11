@@ -2,7 +2,10 @@
 -- Do not edit this if you don't know what you are doing, this is not a config. --
 
 ESX                           = nil
+
 local PlayerData              = {}
+local dict = "missminuteman_1ig_2"
+local handsup = false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -22,7 +25,7 @@ Citizen.CreateThread(function()
                     SetUserRadioControlEnabled(false)
                     if GetPlayerRadioStationName() ~= nil then
                     SetVehRadioStation(GetVehiclePedIsIn(PlayerPedId()),"OFF")
-                    end
+                end
             end
         else
             Citizen.Wait(1000)
@@ -31,13 +34,10 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-    local dict = "missminuteman_1ig_2"
-    
 	RequestAnimDict(dict)
 	while not HasAnimDictLoaded(dict) do
 		Citizen.Wait(100)
 	end
-    local handsup = false
 	while true do
 		Citizen.Wait(0)
 		if IsControlJustPressed(1, Config.HandsKey) and Config.HandsUp then
@@ -89,6 +89,6 @@ if Config.Debug == 'client' then
     print('---------------------------------------------------------------------------------')
 end
 
--- Made by JayOHx @ Sunrise City V2 --
+-- Made by JayOHx --
 -- Free open source --
 -- Sharing permitted DO NOT SELL/BUY THIS SCRIPT --
