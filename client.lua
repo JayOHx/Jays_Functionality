@@ -6,10 +6,9 @@ ESX                           = nil
 local PlayerData              = {}
 local dict = "missminuteman_1ig_2"
 local handsup = false
-local once = true
 local oldval = false
 local oldvalped = false
-local mp_pointing = false
+local JaysPointing = false
 local keyPressed = false
 
 Citizen.CreateThread(function()
@@ -57,8 +56,6 @@ Citizen.CreateThread(function()
     end
 end)
 
--- POPULATION CONTROL THINGS ARE HERE --
-
 DensityMultiplier = Config.DensityMultiplier
 Citizen.CreateThread(function()
 	while true do
@@ -70,8 +67,8 @@ Citizen.CreateThread(function()
 	    SetScenarioPedDensityMultiplierThisFrame(DensityMultiplier, DensityMultiplier)
         SetGarbageTrucks(Config.AllowGarbage)
         SetCreateRandomCops(Config.AllowPolice)
-		SetCreateRandomCopsNotOnScenarios(Config.AllowPolice)
-		SetCreateRandomCopsOnScenarios(Config.AllowPolice)
+		SetCreateRandomCopsNotOnScenarios(Config.RoamingPolice)
+		SetCreateRandomCopsOnScenarios(Config.Allow911Calls)
         SetRandomBoats(Config.AllowBoatSpawns)
 
         if Config.DensityMultiplier < 0.1 then
@@ -111,26 +108,22 @@ Citizen.CreateThread(function()
     while true do
         Wait(0)
 
-        if once then
-            once = false
-        end
-
         if not keyPressed then
-            if IsControlPressed(0, 29) and not mp_pointing and IsPedOnFoot(PlayerPedId()) and Config.PointFinger then
-                Wait(200)
+            if IsControlPressed(0, 29) and not JaysPointing and IsPedOnFoot(PlayerPedId()) and Config.PointFinger then
+                Wait(150)
                 if not IsControlPressed(0, 29) then
                     keyPressed = true
                     startPointing()
-                    mp_pointing = true
+                    JaysPointing = true
                 else
                     keyPressed = true
                     while IsControlPressed(0, 29) do
                         Wait(50)
                     end
                 end
-            elseif (IsControlPressed(0, 29) and mp_pointing) or (not IsPedOnFoot(PlayerPedId()) and mp_pointing) then
+            elseif (IsControlPressed(0, 29) and JaysPointing) or (not IsPedOnFoot(PlayerPedId()) and JaysPointing) then
                 keyPressed = true
-                mp_pointing = false
+                JaysPointing = false
                 stopPointing()
             end
         end
@@ -140,7 +133,7 @@ Citizen.CreateThread(function()
                 keyPressed = false
             end
         end
-        if Citizen.InvokeNative(0x921CE12C489C4C41, PlayerPedId()) and not mp_pointing then
+        if Citizen.InvokeNative(0x921CE12C489C4C41, PlayerPedId()) and not JaysPointing then
             stopPointing()
         end
         if Citizen.InvokeNative(0x921CE12C489C4C41, PlayerPedId()) then
@@ -177,7 +170,6 @@ Citizen.CreateThread(function()
                 Citizen.InvokeNative(0xD5BB4025AE449A4E, ped, "Heading", camHeading * -1.0 + 1.0)
                 Citizen.InvokeNative(0xB0A6CFD2C69C1088, ped, "isBlocked", blocked)
                 Citizen.InvokeNative(0xB0A6CFD2C69C1088, ped, "isFirstPerson", Citizen.InvokeNative(0xEE778F8C7E1142E2, Citizen.InvokeNative(0x19CAFA3C87F7C2FF)) == 4)
-
             end
         end
     end
@@ -192,10 +184,11 @@ if Config.Debug == 'client' then
     print('Garbage truck spawn state =    ', Config.AllowGarbage)
     print('Boats spawn state =            ', Config.AllowBoatSpawns)
     print('Radio disabled? =              ', Config.DisableRadio)
-    print('Point finger status: =         ', Config.PointFinger)
+    print('Point finger enabled? =        ', Config.PointFinger)
     print('---------------------------------------------------------------------------------')
 end
 
 -- Made by JayOHx --
 -- Free open source --
 -- Sharing permitted DO NOT SELL/BUY THIS SCRIPT --
+
