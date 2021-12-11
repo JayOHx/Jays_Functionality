@@ -3,13 +3,15 @@
 
 ESX                           = nil
 
-local PlayerData              = {}
-local dict = "missminuteman_1ig_2"
-local handsup = false
-local oldval = false
-local oldvalped = false
-local JaysPointing = false
-local keyPressed = false
+local PlayerData                = {}
+local dict                      = "missminuteman_1ig_2"
+local handsup                   = false
+local oldval                    = false
+local oldvalped                 = false
+local JaysPointing              = false
+local keyPressed                = false
+local JaysCrouch                = false
+local ped                       = GetPlayerPed( -1 )
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -172,6 +174,34 @@ Citizen.CreateThread(function()
                 Citizen.InvokeNative(0xB0A6CFD2C69C1088, ped, "isFirstPerson", Citizen.InvokeNative(0xEE778F8C7E1142E2, Citizen.InvokeNative(0x19CAFA3C87F7C2FF)) == 4)
             end
         end
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do 
+        Citizen.Wait(0)
+
+        if DoesEntityExist(ped) and not IsEntityDead(ped) then 
+            DisableControlAction(0, 36, true) 
+
+            if not IsPauseMenuActive() and Config.AllowCrouch then 
+                if IsDisabledControlJustPressed(0, Config.CrouchKey) then 
+                    RequestAnimSet("move_ped_crouched")
+
+                    while not HasAnimSetLoaded("move_ped_crouched") do 
+                        Citizen.Wait(100)
+                    end 
+
+                    if JaysCrouch then 
+                        ResetPedMovementClipset(ped, 0)
+                        JaysCrouch = false 
+                    elseif not JaysCrouch then
+                        SetPedMovementClipset(ped, "move_ped_crouched", 0.25)
+                        JaysCrouch = true 
+                    end 
+                end
+            end 
+        end 
     end
 end)
 
