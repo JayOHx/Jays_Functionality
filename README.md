@@ -11,9 +11,9 @@ This is a simple script that I am currently working on for Sunrise city and have
   6. Point Finger feature.
 
 # Images:
-![ping](https://user-images.githubusercontent.com/83920038/145662886-982a4551-1a9b-47de-ad8a-37a3f3095f4e.png)
 ![point finger](https://user-images.githubusercontent.com/83920038/145663772-b05525fe-cc02-4efd-bde8-4784396afbb8.png)
 ![handsup2](https://user-images.githubusercontent.com/83920038/145663774-ed7be7c1-db09-4d4c-b8ba-aa4cd453f9d6.png)
+![ping](https://user-images.githubusercontent.com/83920038/145662886-982a4551-1a9b-47de-ad8a-37a3f3095f4e.png)
 
 # INSTALLATION:
   1. Download the ZIP file
