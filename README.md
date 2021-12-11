@@ -27,7 +27,7 @@ Use this link to find the number relating to the keys you want for changing the 
   1. Everything is lablled in the config.lua for easy use.
   2. If you have any issues feel free to join my personal discord below.
 
-# CONTACT:
+# SUPPORT:
   https://discord.gg/rN4nVHArY9
   
   Please use channel '✋│functionality' in the support section and ping me if its urgent.
