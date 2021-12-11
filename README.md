@@ -27,4 +27,4 @@ CONTACT:
   Please use channel '💰│fivem' and ping me if its urgent.
  
  
-I encourage the reproduction and re-working of this resource, all i ask is for some credit if being modified or re-uploaded.
+I encourage the reproduction and re-working of this resource, all i ask is for some credit if being modified or re-uploaded. a
