@@ -31,16 +31,21 @@ end,false)
 
 -- EVERYTHING BELOW HERE IF FOR DEBUGGING - PLEASE DONT FUCK WITH THIS --
 
-print("Functionality script loaded! Made by JayOHx.")
+if GetResourceState("Jays_Functionality") == "started" then
+    print("Functionality script loaded! Made by JayOHx.")
+else
+    print("Functionality script failed to load, please join discord for support.")
+end
 
-if Config.Debug == 'server' then
+if Config.Debug == 'client' then
     print('---------------------------------------------------------------------------------')
-    print('Jays Debub Monitor - If you don\' want to see this you can disable in the config!')
+    print('Jays Debug Monitor - If you don\' want to see this you can disable in the config!')
     print('---------------------------------------------------------------------------------')
     print('Density multiplier =           ', Config.DensityMultiplier)
     print('Cops spawn state =             ', Config.AllowPolice)
     print('Garbage truck spawn state =    ', Config.AllowGarbage)
     print('Boats spawn state =            ', Config.AllowBoatSpawns)
     print('Radio disabled? =              ', Config.DisableRadio)
+    print('Point finger status: =         ', Config.PointFinger)
     print('---------------------------------------------------------------------------------')
 end
