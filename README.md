@@ -16,6 +16,8 @@ INSTALLATION:
   3. Upload to your server resources
   4. Done.
 
+Use this link to find the number relating to the keys you want for changing the keybinds https://docs.fivem.net/docs/game-references/controls/
+
 CONFIG:
 
   1. Everything is lablled in the config.lua for easy use.
