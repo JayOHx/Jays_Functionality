@@ -8,7 +8,7 @@ game         'gta5'
 -- Info --
 author                      'JayOHx'
 version                     'v0.1a'
-description                 'Simple server character movements'
+description                 'Simple server functions compiled'
 repository                  ''
 name                        'Jays_Functionality'
 
