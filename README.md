@@ -7,7 +7,9 @@ This is a simple script that I am currently working on for Sunrise city and have
   1. Ability to reduce/disable AI population count.
   2. Ability to disable default GTA V vehicle radio.
   3. Built in client and consol 'debug' this only displays your config settings.
-  4. Ping command for users to ping themself and other players for latency checks (Can be disabled in the config.lua)
+  4. Ping command for users to ping themself and other players for latency checks (Can be disabled in the config.lua).
+  5. Hands Up feature.
+  6. Point Finger feature.
 
 # Images:
 ![handsup](https://user-images.githubusercontent.com/83920038/145662885-1383fa3e-f53b-407d-8a79-6f4d2ca1e568.png)
