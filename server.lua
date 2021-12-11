@@ -24,7 +24,7 @@ RegisterCommand("ping",function(source,args,rawCommand)
             print("Ping command does not go through the consol.")
         end
     else
-        print("Ping command disabled in config.")
+        print("Ping command disabled by staff.")
     end
 
 end,false)
