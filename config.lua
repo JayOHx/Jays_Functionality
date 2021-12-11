@@ -14,11 +14,14 @@ Config.AllowPolice              = false
 Config.AllowBoatSpawns          = false
 
 -- Disable/Enable the ping command --
-Config.AllowPing                = false
+Config.AllowPing                = true
 
 -- Allow use of hands up? Defualt key map is 'X'.
 Config.HandsUp                  = true
 Config.HandsKey                 = 323
+
+-- Point finger related options are here --
+Config.PointFinger              = true
 
 -- https://docs.fivem.net/docs/game-references/controls/ -- USED FOR CHANING THE KEY BIND
 
