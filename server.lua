@@ -4,24 +4,27 @@
 -- THIS SECTION IS USED FOR REGISTERING THE PING COMMAND AND PRINTING TO PLAYERS TEXT BOX --
 
 RegisterCommand("ping",function(source,args,rawCommand)
- 
-    if(source > 0)then
-        if(#args == 1) then
-            local playerID = args[1]
-            local playerName = GetPlayerName(playerID)
-            local ping = GetPlayerPing(playerID)
-            if(playerName ~= nil)then
-                print(playerName.." - Ping: "..ping)
+    if Config.AllowPing then
+        if(source > 0)then
+            if(#args == 1) then
+                local playerID = args[1]
+                local playerName = GetPlayerName(playerID)
+                local ping = GetPlayerPing(playerID)
+                if(playerName ~= nil)then
+                    print(playerName.." - Ping: "..ping)
+                else
+                    print("ID: "..playerID..', is not online!')
+                end
             else
-                print("ID: "..playerID..', is not online!')
+                local playerName = GetPlayerName(source)
+                local ping = GetPlayerPing(source)
+                print(playerName.." - Ping: "..ping)
             end
         else
-            local playerName = GetPlayerName(source)
-            local ping = GetPlayerPing(source)
-            print(playerName.." - Ping: "..ping)
+            print("Ping command does not go through the consol.")
         end
     else
-        print("Ping command does not go through the consol.")
+        print("Ping command disabled in config.")
     end
 
 end,false)
