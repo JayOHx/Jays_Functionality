@@ -25,6 +25,10 @@ Config.HandsKey                 = 323
 -- Point finger related options are here --
 Config.PointFinger              = true
 
+-- Disable/Enable the crouch ability --
+Config.AllowCrouch              = true
+Config.CrouchKey                = 36
+
 -- https://docs.fivem.net/docs/game-references/controls/ -- USED FOR CHANING THE KEY BIND
 
 
