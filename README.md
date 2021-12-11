@@ -7,6 +7,7 @@ Current v1.0a features: (VERY LIMITED)
   1. Ability to reduce/disable AI population count.
   2. Ability to disable default GTA V vehicle radio.
   3. Built in client and consol 'debug' this only displays your config settings.
+  4. Ping command for users to ping themself and other players for latency checks (Can be disabled in the config.lua)
 
 INSTALLATION:
 
