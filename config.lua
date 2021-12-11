@@ -12,6 +12,8 @@ Config.DensityMultiplier        = 0.1
 Config.AllowGarbage             = false
 Config.AllowPolice              = false
 Config.AllowBoatSpawns          = false
+Config.Allow911Calls            = false
+Config.RoamingPolice            = false
 
 -- Disable/Enable the ping command --
 Config.AllowPing                = true
@@ -24,4 +26,5 @@ Config.HandsKey                 = 323
 Config.PointFinger              = true
 
 -- https://docs.fivem.net/docs/game-references/controls/ -- USED FOR CHANING THE KEY BIND
+
 
