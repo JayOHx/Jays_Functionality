@@ -8,7 +8,7 @@ Config.Debug                    = 'client'
 Config.DisableRadio             = true
 
 -- All below is the NPC control configs. --
-Config.DensityMultiplier        = 0.0
+Config.DensityMultiplier        = 0.1
 Config.AllowGarbage             = false
 Config.AllowPolice              = false
 Config.AllowBoatSpawns          = false
