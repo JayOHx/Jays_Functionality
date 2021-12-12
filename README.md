@@ -1,6 +1,8 @@
 # Jays_Functionality (ESX)
 This is my first attempt at a resource for ESX based servers, it is essentially a utility script that brings all commonly used scripts into one place, this is usefull for those owners that struggle with resource count limitation that some server providers enforce. 
 
+This is FREE, if anyone is seen to be selling this please tell me.
+
 
 # Current v1.0a features: (VERY LIMITED)
   1. Ability to reduce/disable AI population count.
