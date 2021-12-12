@@ -24,7 +24,7 @@ This is a simple script that I am currently working on for Sunrise city and have
   3. Upload to your server resources
   4. Done.
 
-Use this link to find the number relating to the keys you want for changing the keybinds https://docs.fivem.net/docs/game-references/controls/
+Use this link to find the number relating to the keys you want for changing the keybinds https://docs.fivem.net/docs/game-references/controls/ - I do not intend on adding a key table because I hate them but if you want to modify and re-upload with one, feel free
 
 # CONFIG:
   1. Everything is lablled in the config.lua for easy use.
