@@ -38,11 +38,9 @@ I also plan on adding more features to this in the coming weeks to make it more 
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
   
-  Please use channel '✋│functionality' in the support section and ping me if its urgent.
- 
- 
-I encourage the reproduction and re-working of this resource, all i ask is for some credit if being modified or re-uploaded.
+  Please use channel '✋│functionality' in the support section.
 
 # CREDITS WHERE DUE
 
-The finger point anim was pulled from redoper1's FiveM-FingerPoint script and modified to fit my needs https://github.com/redoper1/FiveM-Point-finger
+The finger point anim was pulled from redoper1's FiveM-FingerPoint script and modified slightly to fit my needs. 
+https://github.com/redoper1/FiveM-Point-finger
