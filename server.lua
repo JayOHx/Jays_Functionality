@@ -1,9 +1,7 @@
 
 -- DO NOT TOUCH THIS, THIS IS NOT A CONFIG --
 
--- THIS SECTION IS USED FOR REGISTERING THE PING COMMAND AND PRINTING TO PLAYERS TEXT BOX --
-
-RegisterCommand("ping",function(source,args,rawCommand)
+RegisterCommand(Config.PingCommand,function(source,args,rawCommand)
     if Config.AllowPing then
         if(source > 0)then
             if(#args == 1) then
@@ -28,24 +26,3 @@ RegisterCommand("ping",function(source,args,rawCommand)
     end
 
 end,false)
-
--- EVERYTHING BELOW HERE IF FOR DEBUGGING - PLEASE DONT FUCK WITH THIS --
-
-if GetResourceState("Jays_Functionality") == "started" then
-    print("Functionality script loaded! Made by JayOHx.")
-else
-    print("Functionality script failed to load, please join discord for support.")
-end
-
-if Config.Debug == 'client' then
-    print('---------------------------------------------------------------------------------')
-    print('Jays Debug Monitor - If you don\' want to see this you can disable in the config!')
-    print('---------------------------------------------------------------------------------')
-    print('Density multiplier =           ', Config.DensityMultiplier)
-    print('Cops spawn state =             ', Config.AllowPolice)
-    print('Garbage truck spawn state =    ', Config.AllowGarbage)
-    print('Boats spawn state =            ', Config.AllowBoatSpawns)
-    print('Radio disabled? =              ', Config.DisableRadio)
-    print('Point finger status: =         ', Config.PointFinger)
-    print('---------------------------------------------------------------------------------')
-end
