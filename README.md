@@ -38,10 +38,6 @@ I plan on removing the dependency for threads in the near future and also either
 I also plan on adding more features to this in the coming weeks to make it more ideal for people with different needs, my main goal is to reduce timings as much as possible and have this resource have little to no impact in terms of latency etc.
 
 # RECENT CHANGES:
-I would like to use this space to thank a friend of mine, MrNewb, I am still fairly new to the FiveM/lua game and he is guiding me through and teaching me new things so alot of the updates coming for this resource are indirectly from him :) .
-
-https://github.com/MrNewb
-
 Changes since release:
   1. Removing the use of GetPlayerPed(-1) in favour of PlayerPedId()
   2. My debug feature is almost removed, I plan on upgrading this to something special in the future.
@@ -51,7 +47,11 @@ Changes since release:
   
   Please use channel '✋│functionality' in the support section.
 
-# CREDITS WHERE DUE
+# CREDITS WHERE DUE:
 
 The finger point anim was pulled from redoper1's FiveM-FingerPoint script and modified slightly to fit my needs. 
 https://github.com/redoper1/FiveM-Point-finger
+
+I would like to use this space to thank a friend of mine, MrNewb, I am still fairly new to the FiveM/lua game and he is guiding me through and teaching me new things so alot of the updates coming for this resource are indirectly from him :) .
+
+https://github.com/MrNewb
