@@ -2,7 +2,7 @@
 Config = {}
 
 -- Debug options = 'client' prints to F8 consol, 'server' prints to server consol. Leave blank to disable.
-Config.Debug                    = 'client'
+Config.PingCommand              = 'ping'
 
 -- Radio disable/enable for your city. --
 Config.DisableRadio             = true
