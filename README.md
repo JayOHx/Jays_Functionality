@@ -41,7 +41,7 @@ I also plan on adding more features to this in the coming weeks to make it more 
 Changes since release:
   1. Removing the use of GetPlayerPed(-1) in favour of PlayerPedId()
   2. My debug feature is almost removed, I plan on upgrading this to something special in the future.
-  3. Removed an useless thread to shave a little time.
+  3. Removed a useless thread.
   4. I've added a couple of sleep timers to things to reduce timings until i replace the threads
 
 shared_script {
