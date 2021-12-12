@@ -40,6 +40,9 @@ I would like to use this space to thank a friend of mine, MrNewb, I am still fai
 
 https://github.com/MrNewb
 
+Changes since release:
+  1. Removing the use of GetPlayerPed(-1) in favour of PlayerPedId()
+
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
   
