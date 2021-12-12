@@ -42,6 +42,7 @@ https://github.com/MrNewb
 
 Changes since release:
   1. Removing the use of GetPlayerPed(-1) in favour of PlayerPedId()
+  2. My debug feature is almost removed, I plan on upgrading this to something special in the future.
 
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
