@@ -37,7 +37,7 @@ I plan on removing the dependency for threads in the near future and also either
 
 I also plan on adding more features to this in the coming weeks to make it more ideal for people with different needs, my main goal is to reduce timings as much as possible and have this resource have little to no impact in terms of latency etc.
 
-# RECENT CHANGES:
+# RECENT CHANGES: (v0.2a)
 Changes since release:
   1. Removing the use of GetPlayerPed(-1) in favour of PlayerPedId()
   2. My debug feature is almost removed, I plan on upgrading this to something special in the future.
