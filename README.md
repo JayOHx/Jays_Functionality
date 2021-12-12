@@ -35,6 +35,11 @@ I plan on removing the dependency for threads in the near future and also either
 
 I also plan on adding more features to this in the coming weeks to make it more ideal for people with different needs, my main goal is to reduce timings as much as possible and have this resource have little to no impact in terms of latency etc.
 
+# RECENT CHANGES:
+I would like to use this space to thank a friend of mine, MrNewb, I am still fairly new to the FiveM/lua game and he is guiding me through and teaching me new things so alot of the updates coming for this resource are indirectly from him :) .
+
+https://github.com/MrNewb
+
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
   
