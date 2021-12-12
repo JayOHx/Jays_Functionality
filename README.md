@@ -42,3 +42,7 @@ I also plan on adding more features to this in the coming weeks to make it more 
  
  
 I encourage the reproduction and re-working of this resource, all i ask is for some credit if being modified or re-uploaded.
+
+# CREDITS WHERE DUE
+
+The finger point anim was pulled from redoper1's FiveM-FingerPoint script and modified to fit my needs https://github.com/redoper1/FiveM-Point-finger
