@@ -30,6 +30,9 @@ Use this link to find the number relating to the keys you want for changing the 
   1. Everything is lablled in the config.lua for easy use.
   2. If you have any issues feel free to join my personal discord below.
 
+# Future
+I plan on removing the dependency for threads in the near future and also either removing or reducing my debut feature as I feel its a bit cluncky and weird.
+
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
   
