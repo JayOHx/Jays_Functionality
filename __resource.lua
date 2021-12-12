@@ -1,15 +1,14 @@
 
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
--- FX Stuff --
 fx_version   'cerulean'
 game         'gta5'
 
--- Info --
-author                      'JayOHx'
-version                     'v0.1a'
+-- Infomation --
+author                      'JayOHx - https://github.com/JayOHx'
+version                     'v0.1b'
 description                 'Simple server functions compiled'
-repository                  ''
+repository                  'https://github.com/JayOHx/Jays_Functionality'
 name                        'Jays_Functionality'
 
 -- Dependencies (Obviously)
@@ -21,4 +20,7 @@ client_script 'client.lua' -- Client file.
 
 server_script 'server.lua' -- Server file.
 
-shared_script 'config.lua' -- Config file.
+shared_script {
+	'config.lua',
+	'@es_extended/imports.lua'
+}
