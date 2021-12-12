@@ -31,7 +31,9 @@ Use this link to find the number relating to the keys you want for changing the 
   2. If you have any issues feel free to join my personal discord below.
 
 # FUTURE PLANS FOR THIS:
-I plan on removing the dependency for threads in the near future and also either removing or reducing my debuG feature as I feel its a bit cluncky and weird. I plan on either incorperating Discord Logs into it for maybe the hands up feature, I feel this could be usefull for Fail RP scenes to do with robberies etc but its something to thing about if it's worth doing.
+I plan on removing the dependency for threads in the near future and also either removing or reducing my debuG feature as I feel its a bit cluncky and weird. I plan on either incorperating Discord Logs into it for maybe the hands up feature, I feel this could be usefull for Fail RP scenes to do with robberies etc but its something to thing about if it's worth doing especially for such a medecore script.
+
+I also plan on adding more features to this in the coming weeks to make it more ideal for people with different needs, my main goal is to reduce timings as much as possible and have this resource have little to no impact in terms of latency etc.
 
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
