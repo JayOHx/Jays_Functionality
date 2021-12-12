@@ -1,26 +1,38 @@
 
 -- Do not edit this if you don't know what you are doing, this is not a config. --
 
-ESX                           = nil
-
 local PlayerData                = {}
-local dict                      = "missminuteman_1ig_2"
-local handsup                   = false
 local oldval                    = false
 local oldvalped                 = false
 local JaysPointing              = false
 local keyPressed                = false
+
+-- Version 0.2a Changes --
+
+local JaysAnim                  = "missminuteman_1ig_2"
+local JaysPed                   = PlayerPedId()
+local JaysHandsUp               = false
 local JaysCrouch                = false
-local ped                       = GetPlayerPed( -1 )
+local JaysSleeper               = 100000 -- Long ass sleep
 
 Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	while true do
 		Citizen.Wait(0)
-	end
-
-	Citizen.Wait(5000)
-	PlayerData = ESX.GetPlayerData()
+		if IsControlJustPressed(1, Config.HandsKey) and Config.HandsUp then
+            if not JaysHandsUp then
+                RequestAnimDict(JaysAnim)
+                while not HasAnimDictLoaded(JaysAnim) do
+                    Citizen.Wait(100)
+                end
+                TaskPlayAnim(PlayerPedId(), JaysAnim, "handsup_enter", 8.0, 8.0, -1, 50, 0, false, false, false)
+                JaysHandsUp = true
+            else
+                JaysHandsUp = false
+                ClearPedTasks(JaysPed)
+            end
+        end
+    end
+    Citizen.Wait(JaysSleeper)
 end)
 
 Citizen.CreateThread(function()
@@ -35,25 +47,6 @@ Citizen.CreateThread(function()
             end
         else
             Citizen.Wait(1000)
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-	RequestAnimDict(dict)
-	while not HasAnimDictLoaded(dict) do
-		Citizen.Wait(100)
-	end
-	while true do
-		Citizen.Wait(0)
-		if IsControlJustPressed(1, Config.HandsKey) and Config.HandsUp then
-            if not handsup then
-                TaskPlayAnim(GetPlayerPed(-1), dict, "handsup_enter", 8.0, 8.0, -1, 50, 0, false, false, false)
-                handsup = true
-            else
-                handsup = false
-                ClearPedTasks(GetPlayerPed(-1))
-            end
         end
     end
 end)
@@ -82,34 +75,32 @@ Citizen.CreateThread(function()
 end)
 
 local function startPointing()
-    local ped = GetPlayerPed(-1)
+    local ped = PlayerPedId()
     RequestAnimDict("anim@mp_point")
     while not HasAnimDictLoaded("anim@mp_point") do
         Wait(0)
     end
-    SetPedCurrentWeaponVisible(ped, 0, 1, 1, 1)
-    SetPedConfigFlag(ped, 36, 1)
-    Citizen.InvokeNative(0x2D537BA194896636, ped, "task_mp_pointing", 0.5, 0, "anim@mp_point", 24)
+    SetPedCurrentWeaponVisible(JaysPed, 0, 1, 1, 1)
+    SetPedConfigFlag(JaysPed, 36, 1)
+    Citizen.InvokeNative(0x2D537BA194896636, JaysPed, "task_mp_pointing", 0.5, 0, "anim@mp_point", 24)
     RemoveAnimDict("anim@mp_point")
 end
 
 local function stopPointing()
-    local ped = GetPlayerPed(-1)
-    Citizen.InvokeNative(0xD01015C7316AE176, ped, "Stop")
-    if not IsPedInjured(ped) then
-        ClearPedSecondaryTask(ped)
+    Citizen.InvokeNative(0xD01015C7316AE176, JaysPed, "Stop")
+    if not IsPedInjured(JaysPed) then
+        ClearPedSecondaryTask(JaysPed)
     end
-    if not IsPedInAnyVehicle(ped, 1) then
-        SetPedCurrentWeaponVisible(ped, 1, 1, 1, 1)
+    if not IsPedInAnyVehicle(JaysPed, 1) then
+        SetPedCurrentWeaponVisible(JaysPed, 1, 1, 1, 1)
     end
-    SetPedConfigFlag(ped, 36, 0)
-    ClearPedSecondaryTask(PlayerPedId())
+    SetPedConfigFlag(JaysPed, 36, 0)
+    ClearPedSecondaryTask(JaysPed)
 end
 
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-
         if not keyPressed then
             if IsControlPressed(0, 29) and not JaysPointing and IsPedOnFoot(PlayerPedId()) and Config.PointFinger then
                 Wait(150)
@@ -142,7 +133,6 @@ Citizen.CreateThread(function()
             if not IsPedOnFoot(PlayerPedId()) then
                 stopPointing()
             else
-                local ped = GetPlayerPed(-1)
                 local camPitch = GetGameplayCamRelativePitch()
                 if camPitch < -70.0 then
                     camPitch = -70.0
@@ -164,14 +154,14 @@ Citizen.CreateThread(function()
                 local blocked = 0
                 local nn = 0
 
-                local coords = GetOffsetFromEntityInWorldCoords(ped, (cosCamHeading * -0.2) - (sinCamHeading * (0.4 * camHeading + 0.3)), (sinCamHeading * -0.2) + (cosCamHeading * (0.4 * camHeading + 0.3)), 0.6)
-                local ray = Cast_3dRayPointToPoint(coords.x, coords.y, coords.z - 0.2, coords.x, coords.y, coords.z + 0.2, 0.4, 95, ped, 7);
+                local coords = GetOffsetFromEntityInWorldCoords(JaysPed, (cosCamHeading * -0.2) - (sinCamHeading * (0.4 * camHeading + 0.3)), (sinCamHeading * -0.2) + (cosCamHeading * (0.4 * camHeading + 0.3)), 0.6)
+                local ray = Cast_3dRayPointToPoint(coords.x, coords.y, coords.z - 0.2, coords.x, coords.y, coords.z + 0.2, 0.4, 95, JaysPed, 7);
                 nn,blocked,coords,coords = GetRaycastResult(ray)
 
-                Citizen.InvokeNative(0xD5BB4025AE449A4E, ped, "Pitch", camPitch)
-                Citizen.InvokeNative(0xD5BB4025AE449A4E, ped, "Heading", camHeading * -1.0 + 1.0)
-                Citizen.InvokeNative(0xB0A6CFD2C69C1088, ped, "isBlocked", blocked)
-                Citizen.InvokeNative(0xB0A6CFD2C69C1088, ped, "isFirstPerson", Citizen.InvokeNative(0xEE778F8C7E1142E2, Citizen.InvokeNative(0x19CAFA3C87F7C2FF)) == 4)
+                Citizen.InvokeNative(0xD5BB4025AE449A4E, JaysPed, "Pitch", camPitch)
+                Citizen.InvokeNative(0xD5BB4025AE449A4E, JaysPed, "Heading", camHeading * -1.0 + 1.0)
+                Citizen.InvokeNative(0xB0A6CFD2C69C1088, JaysPed, "isBlocked", blocked)
+                Citizen.InvokeNative(0xB0A6CFD2C69C1088, JaysPed, "isFirstPerson", Citizen.InvokeNative(0xEE778F8C7E1142E2, Citizen.InvokeNative(0x19CAFA3C87F7C2FF)) == 4)
             end
         end
     end
@@ -181,7 +171,7 @@ Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(0)
 
-        if DoesEntityExist(ped) and not IsEntityDead(ped) then 
+        if DoesEntityExist(JaysPed) and not IsEntityDead(JaysPed) then 
             DisableControlAction(0, 36, true) 
 
             if not IsPauseMenuActive() and Config.AllowCrouch then 
@@ -193,10 +183,10 @@ Citizen.CreateThread(function()
                     end 
 
                     if JaysCrouch then 
-                        ResetPedMovementClipset(ped, 0)
+                        ResetPedMovementClipset(JaysPed, 0)
                         JaysCrouch = false 
                     elseif not JaysCrouch then
-                        SetPedMovementClipset(ped, "move_ped_crouched", 0.25)
+                        SetPedMovementClipset(JaysPed, "move_ped_crouched", 0.25)
                         JaysCrouch = true 
                     end 
                 end
@@ -204,19 +194,6 @@ Citizen.CreateThread(function()
         end 
     end
 end)
-
-if Config.Debug == 'client' then
-    print('---------------------------------------------------------------------------------')
-    print('Jays Debug Monitor - If you don\' want to see this you can disable in the config!')
-    print('---------------------------------------------------------------------------------')
-    print('Density multiplier =           ', Config.DensityMultiplier)
-    print('Cops spawn state =             ', Config.AllowPolice)
-    print('Garbage truck spawn state =    ', Config.AllowGarbage)
-    print('Boats spawn state =            ', Config.AllowBoatSpawns)
-    print('Radio disabled? =              ', Config.DisableRadio)
-    print('Point finger enabled? =        ', Config.PointFinger)
-    print('---------------------------------------------------------------------------------')
-end
 
 -- Made by JayOHx --
 -- Free open source --
