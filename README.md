@@ -1,5 +1,5 @@
 # Jays_Functionality (ESX)
-This is a simple script that I am currently working on for Sunrise city and have decided to upload it here despite the limited functions currently available. 
+This is my first attempt at a resource for ESX based servers, it is essentially a utility script that brings all commonly used scripts into one place, this is usefull for those owners that struggle with resource count limitation that some server providers enforce. 
 
 
 # Current v1.0a features: (VERY LIMITED)
