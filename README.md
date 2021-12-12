@@ -30,8 +30,8 @@ Use this link to find the number relating to the keys you want for changing the 
   1. Everything is lablled in the config.lua for easy use.
   2. If you have any issues feel free to join my personal discord below.
 
-# Future
-I plan on removing the dependency for threads in the near future and also either removing or reducing my debut feature as I feel its a bit cluncky and weird.
+# FUTURE PLANS FOR THIS:
+I plan on removing the dependency for threads in the near future and also either removing or reducing my debuG feature as I feel its a bit cluncky and weird. I plan on either incorperating Discord Logs into it for maybe the hands up feature, I feel this could be usefull for Fail RP scenes to do with robberies etc but its something to thing about if it's worth doing.
 
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
