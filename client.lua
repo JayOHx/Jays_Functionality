@@ -1,65 +1,41 @@
 
--- Do not edit this if you don't know what you are doing, this is not a config. --
-
 local PlayerData                = {}
-local oldval                    = false
-local oldvalped                 = false
+local JaysPed                   = PlayerPedId()
+local JaysSleeper               = 10000
 local JaysPointing              = false
 local keyPressed                = false
-
--- Version 0.2a Changes --
-
-local JaysAnim                  = "missminuteman_1ig_2"
-local JaysPed                   = PlayerPedId()
 local JaysHandsUp               = false
 local JaysCrouch                = false
-local JaysSleeper               = 100000 -- Long ass sleep
+local JaysHandsUp               = false
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-		if IsControlJustPressed(1, Config.HandsKey) and Config.HandsUp then
-            if not JaysHandsUp then
-                RequestAnimDict(JaysAnim)
-                while not HasAnimDictLoaded(JaysAnim) do
-                    Citizen.Wait(100)
-                end
-                TaskPlayAnim(PlayerPedId(), JaysAnim, "handsup_enter", 8.0, 8.0, -1, 50, 0, false, false, false)
-                JaysHandsUp = true
-            else
-                JaysHandsUp = false
-                ClearPedTasks(JaysPed)
-            end
-        end
-    end
-    Citizen.Wait(JaysSleeper)
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        if Config.DisableRadio == true then
-            Citizen.Wait(1000)
-                if IsPedInAnyVehicle(PlayerPedId()) then
-                    SetUserRadioControlEnabled(false)
-                    if GetPlayerRadioStationName() ~= nil then
-                    SetVehRadioStation(GetVehiclePedIsIn(PlayerPedId()),"OFF")
-                end
-            end
+RegisterCommand('jayshandsup', function()
+    if not IsEntityDead(JaysPed) and not IsPauseMenuActive() then
+        if not JaysHandsUp then
+            RequestAnimDict("missminuteman_1ig_2")
+            while not HasAnimDictLoaded("missminuteman_1ig_2") do 
+                Citizen.Wait(100)
+            end 
+            TaskPlayAnim(JaysPed, "missminuteman_1ig_2", 'handsup_enter', 4.0, 2.0, -1, 50, 0, 0, 0, 0)
+            RemoveAnimDict("missminuteman_1ig_2")
+            JaysHandsUp = true 
         else
-            Citizen.Wait(1000)
+            ClearPedTasks(JaysPed)
+            JaysHandsUp = false 
         end
+    else
+        JaysHandsUp = false
     end
-end)
 
-DensityMultiplier = Config.DensityMultiplier
+end, false)
+
 Citizen.CreateThread(function()
 	while true do
 	    Citizen.Wait(0)
-	    SetVehicleDensityMultiplierThisFrame(DensityMultiplier)
-	    SetPedDensityMultiplierThisFrame(DensityMultiplier)
-	    SetRandomVehicleDensityMultiplierThisFrame(DensityMultiplier)
-	    SetParkedVehicleDensityMultiplierThisFrame(DensityMultiplier)
-	    SetScenarioPedDensityMultiplierThisFrame(DensityMultiplier, DensityMultiplier)
+	    SetVehicleDensityMultiplierThisFrame(Config.DensityMultiplier)
+	    SetPedDensityMultiplierThisFrame(Config.DensityMultiplier)
+	    SetRandomVehicleDensityMultiplierThisFrame(Config.DensityMultiplier)
+	    SetParkedVehicleDensityMultiplierThisFrame(Config.DensityMultiplier)
+	    SetScenarioPedDensityMultiplierThisFrame(Config.DensityMultiplier, Config.DensityMultiplier)
         SetGarbageTrucks(Config.AllowGarbage)
         SetCreateRandomCops(Config.AllowPolice)
 		SetCreateRandomCopsNotOnScenarios(Config.RoamingPolice)
@@ -67,15 +43,26 @@ Citizen.CreateThread(function()
         SetRandomBoats(Config.AllowBoatSpawns)
 
         if Config.DensityMultiplier < 0.1 then
-            local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
+            local x,y,z = table.unpack(GetEntityCoords(JaysPed))
             ClearAreaOfVehicles(x, y, z, 1000, false, false, false, false, false)
             RemoveVehiclesFromGeneratorsInArea(x - 500.0, y - 500.0, z - 500.0, x + 500.0, y + 500.0, z + 500.0);
         end
+
+        if Config.DisableRadio == true then
+            Citizen.Wait(1000)
+                if IsPedInAnyVehicle(JaysPed) then
+                    SetUserRadioControlEnabled(false)
+                    if GetPlayerRadioStationName() ~= nil then
+                    SetVehRadioStation(GetVehiclePedIsIn(JaysPed),"OFF")
+                end
+                Citizen.Wait(JaysSleeper)
+            end            
+        end
+
 	end
 end)
 
 local function startPointing()
-    local ped = PlayerPedId()
     RequestAnimDict("anim@mp_point")
     while not HasAnimDictLoaded("anim@mp_point") do
         Wait(0)
@@ -102,7 +89,7 @@ Citizen.CreateThread(function()
     while true do
         Wait(0)
         if not keyPressed then
-            if IsControlPressed(0, 29) and not JaysPointing and IsPedOnFoot(PlayerPedId()) and Config.PointFinger then
+            if IsControlPressed(0, 29) and not JaysPointing and IsPedOnFoot(JaysPed) and Config.PointFinger then
                 Wait(150)
                 if not IsControlPressed(0, 29) then
                     keyPressed = true
@@ -114,7 +101,7 @@ Citizen.CreateThread(function()
                         Wait(50)
                     end
                 end
-            elseif (IsControlPressed(0, 29) and JaysPointing) or (not IsPedOnFoot(PlayerPedId()) and JaysPointing) then
+            elseif (IsControlPressed(0, 29) and JaysPointing) or (not IsPedOnFoot(JaysPed) and JaysPointing) then
                 keyPressed = true
                 JaysPointing = false
                 stopPointing()
@@ -126,11 +113,11 @@ Citizen.CreateThread(function()
                 keyPressed = false
             end
         end
-        if Citizen.InvokeNative(0x921CE12C489C4C41, PlayerPedId()) and not JaysPointing then
+        if Citizen.InvokeNative(0x921CE12C489C4C41, JaysPed) and not JaysPointing then
             stopPointing()
         end
-        if Citizen.InvokeNative(0x921CE12C489C4C41, PlayerPedId()) then
-            if not IsPedOnFoot(PlayerPedId()) then
+        if Citizen.InvokeNative(0x921CE12C489C4C41, JaysPed) then
+            if not IsPedOnFoot(JaysPed) then
                 stopPointing()
             else
                 local camPitch = GetGameplayCamRelativePitch()
@@ -194,6 +181,8 @@ Citizen.CreateThread(function()
         end 
     end
 end)
+
+RegisterKeyMapping('jayshandsup', 'Hands Up~', 'keyboard', 'x')
 
 -- Made by JayOHx --
 -- Free open source --
