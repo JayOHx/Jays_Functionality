@@ -33,21 +33,7 @@ Use this link to find the number relating to the keys you want for changing the 
   2. If you have any issues feel free to join my personal discord below.
 
 # FUTURE PLANS FOR THIS:
-I plan on removing the dependency for threads in the near future and also either removing or reducing my debuG feature as I feel its a bit cluncky and weird. I plan on either incorperating Discord Logs into it for maybe the hands up feature, I feel this could be usefull for Fail RP scenes to do with robberies etc but its something to thing about if it's worth doing especially for such a medecore script.
-
-I also plan on adding more features to this in the coming weeks to make it more ideal for people with different needs, my main goal is to reduce timings as much as possible and have this resource have little to no impact in terms of latency etc.
-
-# RECENT CHANGES: (v0.2a)
-Changes since release:
-  1. Removing the use of GetPlayerPed(-1) in favour of PlayerPedId()
-  2. My debug feature is almost removed, I plan on upgrading this to something special in the future.
-  3. Removed a useless thread.
-  4. I've added a couple of sleep timers to things to reduce timings until i replace the threads
-
-shared_script {
-	'config.lua',
-	'@es_extended/imports.lua'
-}
+Next in mind is to change the way the point finger animation is triggered. (Moving away from shitty threads)
 
 # SUPPORT:
   https://discord.gg/rN4nVHArY9
@@ -62,3 +48,8 @@ https://github.com/redoper1/FiveM-Point-finger
 I would like to use this space to thank a friend of mine, MrNewb, I am still fairly new to the FiveM/lua game and he is guiding me through and teaching me new things so alot of the updates coming for this resource are indirectly from him :) .
 
 https://github.com/MrNewb
+
+# Latest Changes if your interested:
+1. Removed some features that will be put back in time, just using this as an moment to clean everything up into a tidy package.
+2. Removed 2 threads in favour of keymapping with teaching from the amazing MrNewb
+3. Disabled the ability to put hands up while in a vehicle, it looks super weird but might change to just the driver being disabled.
