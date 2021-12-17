@@ -9,6 +9,7 @@ Config.PointFinger              = true
 Config.AllowCrouch              = true
 Config.HandsUp                  = true
 Config.AllowPing                = true
+Config.RandomPedState           = 'disabled' -- 'disabled', 'reduced', 'normal'              
 
 -- Key Bind Stuff Here --
 Config.HandsKey                 = 323
