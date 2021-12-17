@@ -6,15 +6,14 @@ local JaysPointing              = false
 local keyPressed                = false
 local JaysHandsUp               = false
 local JaysCrouch                = false
-local JaysHandsUp               = false
 
 RegisterCommand('jayshandsup', function()
-    if not IsEntityDead(JaysPed) and not IsPauseMenuActive() then
-        if not JaysHandsUp then
+    if not IsEntityDead(JaysPed) and not IsPauseMenuActive() and not IsPedInAnyVehicle(JaysPed) then
+        if not JaysHandsUp then 
             RequestAnimDict("missminuteman_1ig_2")
             while not HasAnimDictLoaded("missminuteman_1ig_2") do 
                 Citizen.Wait(100)
-            end 
+            end
             TaskPlayAnim(JaysPed, "missminuteman_1ig_2", 'handsup_enter', 4.0, 2.0, -1, 50, 0, 0, 0, 0)
             RemoveAnimDict("missminuteman_1ig_2")
             JaysHandsUp = true 
@@ -28,39 +27,29 @@ RegisterCommand('jayshandsup', function()
 
 end, false)
 
-Citizen.CreateThread(function()
-	while true do
-	    Citizen.Wait(0)
-	    SetVehicleDensityMultiplierThisFrame(Config.DensityMultiplier)
-	    SetPedDensityMultiplierThisFrame(Config.DensityMultiplier)
-	    SetRandomVehicleDensityMultiplierThisFrame(Config.DensityMultiplier)
-	    SetParkedVehicleDensityMultiplierThisFrame(Config.DensityMultiplier)
-	    SetScenarioPedDensityMultiplierThisFrame(Config.DensityMultiplier, Config.DensityMultiplier)
-        SetGarbageTrucks(Config.AllowGarbage)
-        SetCreateRandomCops(Config.AllowPolice)
-		SetCreateRandomCopsNotOnScenarios(Config.RoamingPolice)
-		SetCreateRandomCopsOnScenarios(Config.Allow911Calls)
-        SetRandomBoats(Config.AllowBoatSpawns)
+RegisterCommand('jayscrouch', function()
+    if DoesEntityExist(JaysPed) and not IsEntityDead(JaysPed) then 
+        DisableControlAction(0, 36, true) 
 
-        if Config.DensityMultiplier < 0.1 then
-            local x,y,z = table.unpack(GetEntityCoords(JaysPed))
-            ClearAreaOfVehicles(x, y, z, 1000, false, false, false, false, false)
-            RemoveVehiclesFromGeneratorsInArea(x - 500.0, y - 500.0, z - 500.0, x + 500.0, y + 500.0, z + 500.0);
-        end
+        if not IsPauseMenuActive() and Config.AllowCrouch then 
+            if IsDisabledControlJustPressed(0, Config.CrouchKey) then 
+                RequestAnimSet("move_ped_crouched")
 
-        if Config.DisableRadio == true then
-            Citizen.Wait(1000)
-                if IsPedInAnyVehicle(JaysPed) then
-                    SetUserRadioControlEnabled(false)
-                    if GetPlayerRadioStationName() ~= nil then
-                    SetVehRadioStation(GetVehiclePedIsIn(JaysPed),"OFF")
-                end
-                Citizen.Wait(JaysSleeper)
-            end            
-        end
+                while not HasAnimSetLoaded("move_ped_crouched") do 
+                    Citizen.Wait(100)
+                end 
 
-	end
-end)
+                if JaysCrouch then 
+                    ResetPedMovementClipset(JaysPed, 0)
+                    JaysCrouch = false 
+                elseif not JaysCrouch then
+                    SetPedMovementClipset(JaysPed, "move_ped_crouched", 0.25)
+                    JaysCrouch = true
+                end 
+            end
+        end 
+    end 
+end, false)
 
 local function startPointing()
     RequestAnimDict("anim@mp_point")
@@ -154,35 +143,8 @@ Citizen.CreateThread(function()
     end
 end)
 
-Citizen.CreateThread(function()
-    while true do 
-        Citizen.Wait(0)
-
-        if DoesEntityExist(JaysPed) and not IsEntityDead(JaysPed) then 
-            DisableControlAction(0, 36, true) 
-
-            if not IsPauseMenuActive() and Config.AllowCrouch then 
-                if IsDisabledControlJustPressed(0, Config.CrouchKey) then 
-                    RequestAnimSet("move_ped_crouched")
-
-                    while not HasAnimSetLoaded("move_ped_crouched") do 
-                        Citizen.Wait(100)
-                    end 
-
-                    if JaysCrouch then 
-                        ResetPedMovementClipset(JaysPed, 0)
-                        JaysCrouch = false 
-                    elseif not JaysCrouch then
-                        SetPedMovementClipset(JaysPed, "move_ped_crouched", 0.25)
-                        JaysCrouch = true 
-                    end 
-                end
-            end 
-        end 
-    end
-end)
-
 RegisterKeyMapping('jayshandsup', 'Hands Up~', 'keyboard', 'x')
+RegisterKeyMapping('jayscrouch', 'Toggle Crouch~', 'keyboard', 'LCONTROL')
 
 -- Made by JayOHx --
 -- Free open source --
