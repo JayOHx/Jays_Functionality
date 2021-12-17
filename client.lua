@@ -26,6 +26,12 @@ Citizen.CreateThread(function() -- The (To be) one and only thread
         end
     end
 
+    if Config.DisableRadio then
+        if IsPedInAnyVehicle(JaysPed) then
+            TriggerEvent('JaysFuncs:RemoveRadio')
+        end
+    end
+
 	while true do
 	    Citizen.Wait(0)
 	    SetVehicleDensityMultiplierThisFrame(JaysPedCount)
@@ -34,6 +40,14 @@ Citizen.CreateThread(function() -- The (To be) one and only thread
 	    SetParkedVehicleDensityMultiplierThisFrame(JaysPedCount)
 	    SetScenarioPedDensityMultiplierThisFrame(JaysPedCount, JaysPedCount)
 	end
+end)
+
+RegisterNetEvent('JaysFuncs:RemoveRadio') -- Temp trigger this event (Will change)
+AddEventHandler('JaysFuncs:RemoveRadio', function()
+    IsPedInAnyVehicle(PlayerPedId())
+    SetUserRadioControlEnabled(false)
+    SetVehRadioStation(GetVehiclePedIsIn(PlayerPedId()),"OFF")
+    Citizen.Wait(JaysSleeper)
 end)
 
 RegisterCommand('jayshandsup', function()
