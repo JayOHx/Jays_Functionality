@@ -9,6 +9,7 @@ This is FREE, if anyone is seen to be selling this please tell me.
   2. Hands Up feature.
   3. Point Finger feature.
   4. Crouch Feature
+  5. Population Control (Still testing this)
 
 # Images:
 ![point finger](https://user-images.githubusercontent.com/83920038/145663772-b05525fe-cc02-4efd-bde8-4784396afbb8.png)
