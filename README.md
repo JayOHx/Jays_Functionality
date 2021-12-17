@@ -5,13 +5,10 @@ This is FREE, if anyone is seen to be selling this please tell me.
 
 
 # Current v1.0a features: (VERY LIMITED)
-  1. Ability to reduce/disable AI population count.
-  2. Ability to disable default GTA V vehicle radio.
-  3. Built in client and consol 'debug' this only displays your config settings.
-  4. Ping command for users to ping themself and other players for latency checks (Can be disabled in the config.lua).
-  5. Hands Up feature.
-  6. Point Finger feature.
-  7. Crouch Feature
+  1. Ping command for users to ping themself and other players for latency checks (Can be disabled in the config.lua).
+  2. Hands Up feature.
+  3. Point Finger feature.
+  4. Crouch Feature
 
 # Images:
 ![point finger](https://user-images.githubusercontent.com/83920038/145663772-b05525fe-cc02-4efd-bde8-4784396afbb8.png)
