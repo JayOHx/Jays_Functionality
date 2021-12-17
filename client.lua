@@ -33,7 +33,6 @@ Citizen.CreateThread(function() -- The (To be) one and only thread
 	    SetRandomVehicleDensityMultiplierThisFrame(JaysPedCount)
 	    SetParkedVehicleDensityMultiplierThisFrame(JaysPedCount)
 	    SetScenarioPedDensityMultiplierThisFrame(JaysPedCount, JaysPedCount)
-        Citizen.Wait(JaysSleeper)
 	end
 end)
 
