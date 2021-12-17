@@ -6,6 +6,36 @@ local JaysPointing              = false
 local keyPressed                = false
 local JaysHandsUp               = false
 local JaysCrouch                = false
+local JaysPedCount              = nil
+
+Citizen.CreateThread(function() -- The (To be) one and only thread
+
+    if Config.RandomPedState ~= nil then
+        if Config.RandomPedState == 'reduced' then
+            JaysPedCount = 0.3
+            print('Reduced') -- For testing temp var changing states will remove
+        elseif Config.RandomPedState == 'disabled' then
+            print('Disabled') -- For testing temp var changing states will remove
+            JaysPedCount = 0.0
+        elseif Config.RandomPedState == 'normal' then
+            JaysPedCount = 1.0
+            print('Normal')  -- For testing temp var changing states will remove
+        else
+            JaysPedCount = 0.0
+            print('Something is wrong with the ped count, check the config.')  -- For testing temp var changing states will remove
+        end
+    end
+
+	while true do
+	    Citizen.Wait(0)
+	    SetVehicleDensityMultiplierThisFrame(JaysPedCount)
+	    SetPedDensityMultiplierThisFrame(JaysPedCount)
+	    SetRandomVehicleDensityMultiplierThisFrame(JaysPedCount)
+	    SetParkedVehicleDensityMultiplierThisFrame(JaysPedCount)
+	    SetScenarioPedDensityMultiplierThisFrame(JaysPedCount, JaysPedCount)
+        Citizen.Wait(JaysSleeper)
+	end
+end)
 
 RegisterCommand('jayshandsup', function()
     if not IsEntityDead(JaysPed) and not IsPauseMenuActive() and not IsPedInAnyVehicle(JaysPed) then
@@ -145,8 +175,4 @@ end)
 
 RegisterKeyMapping('jayshandsup', 'Hands Up~', 'keyboard', 'x')
 RegisterKeyMapping('jayscrouch', 'Toggle Crouch~', 'keyboard', 'LCONTROL')
-
--- Made by JayOHx --
--- Free open source --
--- Sharing permitted DO NOT SELL/BUY THIS SCRIPT --
 
